@@ -1,6 +1,6 @@
 import { get } from 'env-var';
 
-import '../core/util/common/common.dotenv';
+import './shared/common/common.dotenv';
 
 export interface AppConfig {
   app: {

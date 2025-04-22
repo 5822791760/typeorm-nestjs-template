@@ -6,8 +6,8 @@ import {
   PaginationOptions,
   getLimit,
   getOffset,
-} from '@core/util/common/common.pagintaion';
-import { BaseRepo } from '@core/util/common/common.repo';
+} from '@core/shared/common/common.pagintaion';
+import { BaseRepo } from '@core/shared/common/common.repo';
 
 import { NewUser } from './users.v1.type';
 

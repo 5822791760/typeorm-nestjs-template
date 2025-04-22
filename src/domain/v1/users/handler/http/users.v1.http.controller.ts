@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { errIs } from '@core/util/common/common.neverthrow';
-import { ApiException } from '@core/util/http/http.exception';
+import { errIs } from '@core/shared/common/common.neverthrow';
+import { ApiException } from '@core/shared/http/http.exception';
 
 import { UsersV1Service } from '../../users.v1.service';
 import { GetUserDetailsV1HttpResponse } from './dto/get-user-details.v1.http.dto';

@@ -3,8 +3,8 @@ import { Command, CommandRunner, Option } from 'nest-commander';
 
 import { Posts } from '@core/db/entities/Posts';
 import { Users } from '@core/db/entities/Users';
-import tzDayjs from '@core/util/common/common.dayjs';
-import { getRandomId } from '@core/util/common/common.func';
+import tzDayjs from '@core/shared/common/common.dayjs';
+import { getRandomId } from '@core/shared/common/common.func';
 
 import { PostsCliRepo } from '../posts.cli.repo';
 

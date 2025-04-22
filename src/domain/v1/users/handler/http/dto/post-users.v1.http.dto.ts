@@ -1,6 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 
-import { IStandardSingleApiResponse } from '@core/util/http/http.standard';
+import { IStandardSingleApiResponse } from '@core/shared/http/http.standard';
 
 import { NewUserData } from '../../../users.v1.type';
 

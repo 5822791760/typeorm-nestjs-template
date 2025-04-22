@@ -2,8 +2,8 @@ import { Command, CommandRunner } from 'nest-commander';
 
 import { Posts } from '@core/db/entities/Posts';
 import { Users } from '@core/db/entities/Users';
-import { DEFAULT_PASSWORD } from '@core/util/common/common.constant';
-import { hashString } from '@core/util/common/common.crypto';
+import { DEFAULT_PASSWORD } from '@core/shared/common/common.constant';
+import { hashString } from '@core/shared/common/common.crypto';
 
 import { InitialsCliRepo } from '../initials.cli.repo';
 

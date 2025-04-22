@@ -4,7 +4,7 @@ import { render } from '@react-email/render';
 import Mail from 'nodemailer/lib/mailer';
 
 import { AppConfig } from '@core/config';
-import { Err, Ok, Res } from '@core/util/common/common.neverthrow';
+import { Err, Ok, Res } from '@core/shared/common/common.neverthrow';
 
 import { NODE_MAILER } from './email.helper.provider';
 

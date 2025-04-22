@@ -10,9 +10,9 @@ import { Request } from 'express';
 import { AppConfig } from '@core/config';
 import { LoggerService } from '@core/global/logger/logger.service';
 
-import { isProd } from '../../util/common/common.func';
-import { HttpBaseException } from '../../util/http/http.exception';
-import { IStandardSingleApiResponse } from '../../util/http/http.standard';
+import { isProd } from '../../shared/common/common.func';
+import { HttpBaseException } from '../../shared/http/http.exception';
+import { IStandardSingleApiResponse } from '../../shared/http/http.standard';
 
 @Catch(Error)
 export class HttpExceptionFilter implements ExceptionFilter {

@@ -1,12 +1,12 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 
-import { PaginationOptions } from '@core/util/common/common.pagintaion';
-import { PaginationMetaResponse } from '@core/util/http/http.response.dto';
+import { PaginationOptions } from '@core/shared/common/common.pagintaion';
+import { PaginationMetaResponse } from '@core/shared/http/http.response.dto';
 import {
   IPaginationMeta,
   IStandardArrayApiResponse,
-} from '@core/util/http/http.standard';
+} from '@core/shared/http/http.standard';
 
 import { UserDetails } from '../../../users.v1.type';
 

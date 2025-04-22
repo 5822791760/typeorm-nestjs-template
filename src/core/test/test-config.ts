@@ -1,7 +1,7 @@
 import { get } from 'env-var';
 
 import { AppConfig } from '@core/config';
-import '@core/util/common/common.dotenv';
+import '@core/shared/common/common.dotenv';
 
 export interface TestAppConfig {
   app: AppConfig['app'];

@@ -2,8 +2,8 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { UsePublic } from '@core/middleware/jwt/jwt.common';
-import { errIs } from '@core/util/common/common.neverthrow';
-import { ApiException } from '@core/util/http/http.exception';
+import { errIs } from '@core/shared/common/common.neverthrow';
+import { ApiException } from '@core/shared/http/http.exception';
 
 import { AuthsV1Service } from '../../auths.v1.service';
 import {

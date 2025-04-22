@@ -2,9 +2,9 @@ import { faker } from '@faker-js/faker';
 import { Command, CommandRunner, Option } from 'nest-commander';
 
 import { Users } from '@core/db/entities/Users';
-import { DEFAULT_PASSWORD } from '@core/util/common/common.constant';
-import { hashString } from '@core/util/common/common.crypto';
-import tzDayjs from '@core/util/common/common.dayjs';
+import { DEFAULT_PASSWORD } from '@core/shared/common/common.constant';
+import { hashString } from '@core/shared/common/common.crypto';
+import tzDayjs from '@core/shared/common/common.dayjs';
 
 import { UsersCliRepo } from '../users.cli.repo';
 

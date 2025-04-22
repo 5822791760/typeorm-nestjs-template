@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RedisClientType } from 'redis';
 
-import { ExceptionErr, Ok, Res } from '@core/util/common/common.neverthrow';
+import { ExceptionErr, Ok, Res } from '@core/shared/common/common.neverthrow';
 
 import { REDIS_CLIENT } from './cache.helper.provider';
 

@@ -1,9 +1,9 @@
 import { Injectable, ValidationPipe } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
-import { ValidateFields } from '@core/util/common/common.neverthrow';
-import { ApiException } from '@core/util/http/http.exception';
-import { FieldsErrorKey } from '@core/util/http/http.standard';
+import { ValidateFields } from '@core/shared/common/common.neverthrow';
+import { ApiException } from '@core/shared/http/http.exception';
+import { FieldsErrorKey } from '@core/shared/http/http.standard';
 
 @Injectable()
 export class CoreValidationPipe extends ValidationPipe {

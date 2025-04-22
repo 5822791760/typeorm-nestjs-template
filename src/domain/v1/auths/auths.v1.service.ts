@@ -7,16 +7,16 @@ import {
   encodeUserJwt,
   hashString,
   isMatchedHash,
-} from '@core/util/common/common.crypto';
-import tzDayjs from '@core/util/common/common.dayjs';
-import { clone } from '@core/util/common/common.func';
+} from '@core/shared/common/common.crypto';
+import tzDayjs from '@core/shared/common/common.dayjs';
+import { clone } from '@core/shared/common/common.func';
 import {
   Err,
   Ok,
   Res,
   ValidateFields,
   validateSuccess,
-} from '@core/util/common/common.neverthrow';
+} from '@core/shared/common/common.neverthrow';
 
 import { AuthsV1Repo } from './auths.v1.repo';
 import {

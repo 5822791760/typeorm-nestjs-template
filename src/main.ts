@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 
 import { config } from '@core/config';
-import { coreLogger } from '@core/util/common/common.logger';
-import { setupApp, setupSwagger } from '@core/util/http/http.setup';
+import { coreLogger } from '@core/shared/common/common.logger';
+import { setupApp, setupSwagger } from '@core/shared/http/http.setup';
 
 import { AppModule } from './app.module';
 

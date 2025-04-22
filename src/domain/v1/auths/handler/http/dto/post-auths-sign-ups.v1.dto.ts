@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-import { IStandardSingleApiResponse } from '@core/util/http/http.standard';
+import { IStandardSingleApiResponse } from '@core/shared/http/http.standard';
 
 import { AuthDetails, NewUserData } from '@domain/v1/auths/auths.v1.type';
 

@@ -4,9 +4,9 @@ import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
 import { AppConfig } from '@core/config';
-import { decodeUserJwt } from '@core/util/common/common.crypto';
-import { newInfo } from '@core/util/common/common.neverthrow';
-import { ApiException } from '@core/util/http/http.exception';
+import { decodeUserJwt } from '@core/shared/common/common.crypto';
+import { newInfo } from '@core/shared/common/common.neverthrow';
+import { ApiException } from '@core/shared/http/http.exception';
 
 import { AUTH_HEADER, IS_PUBLIC_KEY, USER_CONTEXT } from './jwt.common';
 
@@ -31,7 +31,7 @@ export class JwtGuard implements CanActivate {
 
     const token = this._extractTokenFromHeader(request);
     if (!token) {
-      throw new ApiException(newInfo('invalid'), 400);
+      throw new ApiException(newInfo('invalidToken'), 400);
     }
 
     const rClaims = decodeUserJwt(token, jwtConfig.salt);

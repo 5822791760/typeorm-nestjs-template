@@ -15,8 +15,8 @@ import * as ErrorStackParser from 'error-stack-parser';
 
 import { AppConfig } from '@core/config';
 import { ICoreContext } from '@core/middleware/core-context/core-context.common';
-import tzDayjs from '@core/util/common/common.dayjs';
-import { HttpBaseException } from '@core/util/http/http.exception';
+import tzDayjs from '@core/shared/common/common.dayjs';
+import { HttpBaseException } from '@core/shared/http/http.exception';
 
 import { TraceLog } from './logger.type';
 

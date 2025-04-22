@@ -5,7 +5,7 @@ import { Dayjs } from 'dayjs';
 import { DataSource } from 'typeorm';
 
 import { TransactionService } from '@core/global/transaction/transaction.service';
-import { setupApp } from '@core/util/http/http.setup';
+import { setupApp } from '@core/shared/http/http.setup';
 
 import { MockGlobalModule } from '../mock/mock.global.module';
 import { MockDBModule } from '../mock/mock.kysely';

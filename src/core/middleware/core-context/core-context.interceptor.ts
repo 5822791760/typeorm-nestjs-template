@@ -7,7 +7,7 @@ import {
 import { nanoid } from 'nanoid';
 import { Observable } from 'rxjs';
 
-import tzDayjs from '@core/util/common/common.dayjs';
+import tzDayjs from '@core/shared/common/common.dayjs';
 
 import { CORE_CONTEXT, ICoreContext } from './core-context.common';
 
