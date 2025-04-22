@@ -41,7 +41,7 @@ export abstract class BaseRepo {
     return mainDb;
   }
 
-  protected get shardDb(): { main: DataSource; replica?: DataSource } {
+  private get shardDb(): { main: DataSource; replica?: DataSource } {
     return { main: this.dataSource };
   }
 

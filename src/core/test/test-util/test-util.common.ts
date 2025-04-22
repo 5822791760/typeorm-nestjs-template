@@ -8,8 +8,8 @@ import { TransactionService } from '@core/global/transaction/transaction.service
 import { setupApp } from '@core/shared/http/http.setup';
 
 import { MockGlobalModule } from '../mock/mock.global.module';
-import { MockDBModule } from '../mock/mock.kysely';
 import { MockMiddlewareModule } from '../mock/mock.middleware.module';
+import { MockDBModule } from '../mock/mock.typeorm';
 import { config } from '../test-config';
 
 export function mockTransaction(
