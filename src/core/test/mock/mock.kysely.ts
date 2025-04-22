@@ -1,9 +1,8 @@
 import { Global, Module, Provider } from '@nestjs/common';
-
-import { KYSELY } from '@core/db/db.common';
+import { DataSource } from 'typeorm';
 
 const MockKyselyProvider: Provider = {
-  provide: KYSELY,
+  provide: DataSource,
   useValue: {
     transaction: jest.fn().mockImplementation(() => ({
       execute: jest.fn(),

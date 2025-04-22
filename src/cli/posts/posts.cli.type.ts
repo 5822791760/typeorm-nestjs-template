@@ -1,7 +1,7 @@
 export interface PostData {
   title: string;
   details: string;
-  createdBy: number;
+  createdBy: { id: number };
 }
 
 export interface NewPost extends PostData {

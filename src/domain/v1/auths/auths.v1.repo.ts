@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { queryExists } from '@core/db/db.util';
+import { Users } from '@core/db/entities/Users';
 import { BaseRepo } from '@core/util/common/common.repo';
 
 import { AuthenticatedUser, NewUser, User } from './auths.v1.type';
@@ -8,55 +8,26 @@ import { AuthenticatedUser, NewUser, User } from './auths.v1.type';
 @Injectable()
 export class AuthsV1Repo extends BaseRepo {
   async getOneUser(email: string): Promise<User | null> {
-    const user = await this.db
-      .selectFrom('users')
-      .select([
-        'id',
-        'email',
-        'password',
-        'createdAt',
-        'updatedAt',
-        'lastSignedInAt',
-      ])
-      .where('email', '=', email)
-      .executeTakeFirst();
-
-    if (!user) {
-      return null;
-    }
-
-    return user;
+    return this.from(Users).findOne({ where: { email } });
   }
 
-  async insertAuthUser(user: NewUser): Promise<AuthenticatedUser | null> {
-    const res = await this.writeDb
-      .insertInto('users')
-      .values(user)
-      .returning(['id'])
-      .executeTakeFirst();
-
-    if (!res?.id) {
-      return null;
-    }
+  async insertAuthUser(data: NewUser): Promise<AuthenticatedUser | null> {
+    const newUser = this.from(Users).create(data);
+    await this.from(Users).save(newUser);
 
     return {
-      ...user,
-      id: res.id,
+      ...data,
+      id: newUser.id,
     };
   }
 
   async updateUser(user: User | AuthenticatedUser) {
     const { id, ...data } = user;
 
-    await this.writeDb
-      .updateTable('users')
-      .set(data)
-      .where('id', '=', id)
-      .execute();
+    await this.from(Users).update(id, data);
   }
 
   async isEmailExistsInUsers(email: string): Promise<boolean> {
-    const qb = this.db.selectFrom('users').where('email', '=', email);
-    return queryExists(qb);
+    return this.from(Users).existsBy({ email });
   }
 }

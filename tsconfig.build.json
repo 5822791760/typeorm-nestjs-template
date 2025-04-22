@@ -6,7 +6,6 @@
     "dist",
     "**/*spec.ts",
     "jest-global.setup.ts",
-    "jest-global.teardown.ts",
-    "kysely.config.ts"
+    "jest-global.teardown.ts"
   ]
 }

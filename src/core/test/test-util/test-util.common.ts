@@ -2,8 +2,8 @@ import { DynamicModule, Provider, Type } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Dayjs } from 'dayjs';
+import { DataSource } from 'typeorm';
 
-import { KYSELY } from '@core/db/db.common';
 import { TransactionService } from '@core/global/transaction/transaction.service';
 import { setupApp } from '@core/util/http/http.setup';
 
@@ -67,9 +67,9 @@ export async function createRepoTestingModule(repo: Provider) {
       repo,
       TransactionService,
       {
-        provide: KYSELY,
+        provide: DataSource,
         useFactory: async () => {
-          return globalThis.kyselyDB;
+          return globalThis.dataSource;
         },
       },
     ],

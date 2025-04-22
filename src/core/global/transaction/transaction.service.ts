@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
-
-import { TxDB } from '@core/db/db.common';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class TransactionService {
-  private _transactionStorage = new AsyncLocalStorage<TxDB>();
+  private _transactionStorage = new AsyncLocalStorage<EntityManager>();
 
-  setTransaction(trx: TxDB) {
+  setTransaction(trx: EntityManager) {
     this._transactionStorage.enterWith(trx);
   }
 
-  getTransaction(): TxDB | null {
+  getTransaction(): EntityManager | null {
     return this._transactionStorage.getStore() ?? null;
   }
 }

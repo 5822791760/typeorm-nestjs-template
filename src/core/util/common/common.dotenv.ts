@@ -11,7 +11,7 @@ function getEnvPath(nodeEnv: string | undefined) {
     return '../../../../.env';
   }
 
-  return '../../../../../.env';
+  return '../../../../.env';
 }
 
 const envPath: string = path.resolve(

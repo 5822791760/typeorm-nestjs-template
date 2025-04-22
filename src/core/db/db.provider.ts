@@ -1,9 +1,23 @@
 import { Provider } from '@nestjs/common';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
-import { KYSELY } from './db.common';
-import kyselyDB from './db.kysely';
+import { config } from '@core/config';
 
-export const KyselyProvider: Provider = {
-  provide: KYSELY,
-  useFactory: () => kyselyDB,
+const dbConfig = config().database;
+
+export const connectionSource = new DataSource({
+  type: 'postgres',
+  url: dbConfig.url,
+  synchronize: false,
+  entities: [__dirname + '/entities/*.{ts,js}'],
+  migrations: [__dirname + '/migrations/*.{ts,js}'],
+  migrationsRun: dbConfig.enableAutoMigrate,
+} as DataSourceOptions);
+
+export const DataSourceProvider: Provider = {
+  provide: DataSource,
+  useFactory: async () => {
+    await connectionSource.initialize();
+    return connectionSource;
+  },
 };
