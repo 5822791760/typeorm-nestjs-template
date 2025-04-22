@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { Command, CommandRunner, Option } from 'nest-commander';
 
+import { Users } from '@core/db/entities/Users';
 import { DEFAULT_PASSWORD } from '@core/util/common/common.constant';
 import { hashString } from '@core/util/common/common.crypto';
 import tzDayjs from '@core/util/common/common.dayjs';
 
 import { UsersCliRepo } from '../users.cli.repo';
-import { NewUser } from '../users.cli.type';
 
 interface CommandOptions {
   amount: number;
@@ -22,21 +22,21 @@ export class UsersCliSeed extends CommandRunner {
   }
 
   async run(_passedParams: string[], options: CommandOptions): Promise<void> {
-    const users: NewUser[] = [];
+    const users: Users[] = [];
 
     for (let i = 0; i < options.amount; i++) {
-      const data: NewUser = {
-        email: faker.internet.email(),
-        password: hashString(DEFAULT_PASSWORD),
-        createdAt: tzDayjs().toDate(),
-        updatedAt: tzDayjs().toDate(),
-      };
-
-      users.push(data);
+      users.push(
+        this.repo.from(Users).create({
+          email: faker.internet.email(),
+          password: hashString(DEFAULT_PASSWORD),
+          createdAt: tzDayjs().toDate(),
+          updatedAt: tzDayjs().toDate(),
+        }),
+      );
     }
 
     await this.repo.transaction(async () => {
-      this.repo.insertBulk(users);
+      this.repo.from(Users).insert(users);
     });
   }
 

@@ -1,11 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { Command, CommandRunner, Option } from 'nest-commander';
 
+import { Posts } from '@core/db/entities/Posts';
+import { Users } from '@core/db/entities/Users';
 import tzDayjs from '@core/util/common/common.dayjs';
 import { getRandomId } from '@core/util/common/common.func';
 
 import { PostsCliRepo } from '../posts.cli.repo';
-import { NewPost } from '../posts.cli.type';
 
 interface CommandOptions {
   amount: number;
@@ -21,23 +22,23 @@ export class PostsCliSeed extends CommandRunner {
   }
 
   async run(_passedParams: string[], options: CommandOptions): Promise<void> {
-    const posts: NewPost[] = [];
-    const users = await this.repo.getUsers();
+    const posts: Posts[] = [];
+    const users = await this.repo.from(Users).find();
 
     for (let i = 0; i < options.amount; i++) {
-      const data: NewPost = {
-        title: faker.book.title(),
-        details: faker.lorem.lines(),
-        createdBy: { id: getRandomId(users) },
-        createdAt: tzDayjs().toDate(),
-        updatedAt: tzDayjs().toDate(),
-      };
-
-      posts.push(data);
+      posts.push(
+        this.repo.from(Posts).create({
+          title: faker.book.title(),
+          details: faker.lorem.lines(),
+          createdBy: { id: getRandomId(users) },
+          createdAt: tzDayjs().toDate(),
+          updatedAt: tzDayjs().toDate(),
+        }),
+      );
     }
 
     await this.repo.transaction(async () => {
-      this.repo.insertBulk(posts);
+      this.repo.from(Posts).insert(posts);
     });
   }
 
