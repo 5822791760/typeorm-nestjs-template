@@ -1,3 +1,5 @@
+import { Users } from '@core/db/entities/Users';
+
 // Model
 export interface NewUserData {
   email: string;
@@ -8,19 +10,15 @@ export interface NewUser extends NewUserData {
   updatedAt: Date;
   lastSignedInAt: Date;
 }
-export interface AuthenticatedUser extends NewUser {
-  id: number;
-}
-export interface User extends Omit<NewUser, 'lastSignedInAt'> {
-  id: number;
-  lastSignedInAt: Date | null;
+export interface AuthenticatedUser extends Omit<Users, 'lastSignedInAt'> {
+  lastSignedInAt: Date;
 }
 
 // Usage
 
-export interface UserData extends Partial<Pick<User, 'lastSignedInAt'>> {}
+export interface UserData extends Partial<Pick<Users, 'lastSignedInAt'>> {}
 
-export interface SignInUserData extends Pick<User, 'email' | 'password'> {}
+export interface SignInUserData extends Pick<Users, 'email' | 'password'> {}
 
 export interface ValidateSignUpData extends Pick<NewUserData, 'email'> {}
 

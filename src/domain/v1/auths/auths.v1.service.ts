@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { AppConfig } from '@core/config';
+import { Users } from '@core/db/entities/Users';
 import {
   encodeUserJwt,
   hashString,
@@ -24,7 +25,6 @@ import {
   NewUser,
   NewUserData,
   SignInUserData,
-  User,
   UserData,
   ValidateSignUpData,
 } from './auths.v1.type';
@@ -100,7 +100,7 @@ export class AuthsV1Service {
   }
 
   private _authenticateUser(
-    user: User,
+    user: Users,
     rawPassword: string,
   ): Res<AuthenticatedUser, 'invalidPassword'> {
     if (!isMatchedHash(rawPassword, user.password)) {
@@ -119,7 +119,7 @@ export class AuthsV1Service {
     return encodeUserJwt({ id: user.id }, jwtConfig.salt);
   }
 
-  private _updateUser(user: User, data: UserData): User {
+  private _updateUser(user: Users, data: UserData): Users {
     user = clone(user);
 
     if (data.lastSignedInAt) {

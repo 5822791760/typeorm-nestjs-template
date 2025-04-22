@@ -35,6 +35,6 @@ export class GetUsersV1HttpResponse
 {
   success: boolean;
   key: string;
-  datas: GetUsersV1HttpData[];
+  data: GetUsersV1HttpData[];
   meta: PaginationMetaResponse;
 }

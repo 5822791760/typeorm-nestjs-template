@@ -12,6 +12,7 @@ export const connectionSource = new DataSource({
   entities: [__dirname + '/entities/*.{ts,js}'],
   migrations: [__dirname + '/migrations/*.{ts,js}'],
   migrationsRun: dbConfig.enableAutoMigrate,
+  logging: dbConfig.enableLog,
 } as DataSourceOptions);
 
 export const DataSourceProvider: Provider = {

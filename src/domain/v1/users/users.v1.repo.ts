@@ -9,15 +9,15 @@ import {
 } from '@core/util/common/common.pagintaion';
 import { BaseRepo } from '@core/util/common/common.repo';
 
-import { NewUser, User } from './users.v1.type';
+import { NewUser } from './users.v1.type';
 
 @Injectable()
 export class UsersV1Repo extends BaseRepo {
-  async getOneUser(id: number): Promise<User | null> {
+  async getOneUser(id: number): Promise<Users | null> {
     return this.from(Users).findOne({ where: { id } });
   }
 
-  async getAllUsers(): Promise<User[]> {
+  async getAllUsers(): Promise<Users[]> {
     return this.from(Users).find();
   }
 
@@ -38,7 +38,7 @@ export class UsersV1Repo extends BaseRepo {
     await this.from(Users).insert(user);
   }
 
-  async updateUser(user: User): Promise<void> {
+  async updateUser(user: Users): Promise<void> {
     const { id, ...data } = user;
 
     await this.from(Users).update(id, data);
@@ -61,6 +61,6 @@ export class UsersV1Repo extends BaseRepo {
 // ========= Type =========
 
 interface GetPageUsers {
-  datas: User[];
+  datas: Users[];
   totalItems: number;
 }

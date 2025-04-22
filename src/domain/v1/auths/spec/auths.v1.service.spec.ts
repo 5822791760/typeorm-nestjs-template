@@ -1,6 +1,8 @@
+import { plainToInstance } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { mock } from 'jest-mock-extended';
 
+import { Users } from '@core/db/entities/Users';
 import {
   createTestingModule,
   freezeTestTime,
@@ -36,14 +38,16 @@ describe('AuthsV1Service', () => {
   describe('postAuthsSignIns', () => {
     it('works', async () => {
       // Arrange
-      repo.getOneUser.mockResolvedValue({
-        id: 1,
-        email: 'test@exmaple.com',
-        password: hashString('password'),
-        lastSignedInAt: null,
-        createdAt: current.toDate(),
-        updatedAt: current.toDate(),
-      });
+      repo.getOneUser.mockResolvedValue(
+        plainToInstance(Users, {
+          id: 1,
+          email: 'test@exmaple.com',
+          password: hashString('password'),
+          lastSignedInAt: null,
+          createdAt: current.toDate(),
+          updatedAt: current.toDate(),
+        }),
+      );
       mockTransaction(repo);
       repo.updateUser.mockResolvedValue(undefined);
 
@@ -87,14 +91,16 @@ describe('AuthsV1Service', () => {
 
     it('throws invalidPassword', async () => {
       // Arrange
-      repo.getOneUser.mockResolvedValue({
-        id: 1,
-        email: 'test@exmaple.com',
-        password: hashString('password'),
-        lastSignedInAt: null,
-        createdAt: current.toDate(),
-        updatedAt: current.toDate(),
-      });
+      repo.getOneUser.mockResolvedValue(
+        plainToInstance(Users, {
+          id: 1,
+          email: 'test@exmaple.com',
+          password: hashString('password'),
+          lastSignedInAt: null,
+          createdAt: current.toDate(),
+          updatedAt: current.toDate(),
+        }),
+      );
 
       const data: SignInUserData = {
         email: 'test@example.com',

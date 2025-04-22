@@ -46,7 +46,7 @@ export class UsersV1HttpController {
     return {
       success: true,
       key: '',
-      datas,
+      data: datas,
       meta: {
         pagination,
       },

@@ -9,16 +9,6 @@ export interface NewUser extends NewUserData {
   createdAt: Date;
   updatedAt: Date;
 }
-export interface User extends NewUser {
-  id: number;
-}
-export interface Post {
-  id: number;
-  title: string;
-}
-export interface UserWithPosts extends User {
-  posts: Post[];
-}
 
 // Usage
 

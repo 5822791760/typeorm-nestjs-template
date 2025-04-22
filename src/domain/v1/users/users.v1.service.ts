@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { Users } from '@core/db/entities/Users';
 import { hashString } from '@core/util/common/common.crypto';
 import tzDayjs from '@core/util/common/common.dayjs';
 import { clone } from '@core/util/common/common.func';
@@ -21,7 +22,6 @@ import {
   NewUser,
   NewUserData,
   UpdateUserData,
-  User,
   UserDetails,
   ValidateUserData,
 } from './users.v1.type';
@@ -106,7 +106,7 @@ export class UsersV1Service {
     };
   }
 
-  private _updateUser(user: User, data: UpdateUserData): User {
+  private _updateUser(user: Users, data: UpdateUserData): Users {
     user = clone(user);
 
     if (data.email) {

@@ -1,9 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import { DataSource, EntityTarget, ObjectLiteral, Repository } from 'typeorm';
 
 import { TransactionService } from '@core/global/transaction/transaction.service';
 
 import { ExceptionErr, Ok, Res } from './common.neverthrow';
 
+@Injectable()
 export abstract class BaseRepo {
   constructor(
     private dataSource: DataSource,

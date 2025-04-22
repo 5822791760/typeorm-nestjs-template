@@ -3,25 +3,22 @@ import { Injectable } from '@nestjs/common';
 import { Users } from '@core/db/entities/Users';
 import { BaseRepo } from '@core/util/common/common.repo';
 
-import { AuthenticatedUser, NewUser, User } from './auths.v1.type';
+import { AuthenticatedUser, NewUser } from './auths.v1.type';
 
 @Injectable()
 export class AuthsV1Repo extends BaseRepo {
-  async getOneUser(email: string): Promise<User | null> {
+  async getOneUser(email: string): Promise<Users | null> {
     return this.from(Users).findOne({ where: { email } });
   }
 
   async insertAuthUser(data: NewUser): Promise<AuthenticatedUser | null> {
-    const newUser = this.from(Users).create(data);
-    await this.from(Users).save(newUser);
+    let newUser = this.from(Users).create(data);
+    newUser = await this.from(Users).save(newUser);
 
-    return {
-      ...data,
-      id: newUser.id,
-    };
+    return newUser as AuthenticatedUser;
   }
 
-  async updateUser(user: User | AuthenticatedUser) {
+  async updateUser(user: Users) {
     const { id, ...data } = user;
 
     await this.from(Users).update(id, data);

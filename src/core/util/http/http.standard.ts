@@ -31,6 +31,6 @@ export interface IStandardSingleApiResponse<
 export interface IStandardArrayApiResponse<
   M extends Record<string, any> = object,
 > extends Omit<IStandardSingleApiResponse<M>, 'data'> {
-  datas: object[];
+  data: object[];
   meta?: M;
 }

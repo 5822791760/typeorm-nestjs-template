@@ -1,6 +1,8 @@
+import { plainToInstance } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { mock } from 'jest-mock-extended';
 
+import { Users } from '@core/db/entities/Users';
 import {
   createTestingModule,
   freezeTestTime,
@@ -13,7 +15,7 @@ import { PaginationOptions } from '@core/util/common/common.pagintaion';
 import { UsersV1Module } from '../users.v1.module';
 import { UsersV1Repo } from '../users.v1.repo';
 import { UsersV1Service } from '../users.v1.service';
-import { NewUser, NewUserData, User, UserDetails } from '../users.v1.type';
+import { NewUser, NewUserData, UserDetails } from '../users.v1.type';
 
 describe(`UsersV1Service`, () => {
   const repo = mock<UsersV1Repo>();
@@ -40,13 +42,13 @@ describe(`UsersV1Service`, () => {
   describe(`getUsers`, () => {
     it('works', async () => {
       // Arrange
-      const user: User = {
+      const user: Users = plainToInstance(Users, {
         id: 1,
         email: 'test@example.com',
         password: 'test',
         createdAt: current.toDate(),
         updatedAt: current.toDate(),
-      };
+      });
 
       repo.getPageUsers.mockResolvedValue({
         datas: [user],
@@ -78,13 +80,13 @@ describe(`UsersV1Service`, () => {
       // Arrange
       const id = 1;
 
-      const user: User = {
+      const user: Users = plainToInstance(Users, {
         id: 1,
         email: 'test@example.com',
         password: 'test',
         createdAt: current.toDate(),
         updatedAt: current.toDate(),
-      };
+      });
 
       repo.getOneUser.mockResolvedValue(user);
 
@@ -176,13 +178,15 @@ describe(`UsersV1Service`, () => {
     it('works', async () => {
       // Arrange
       repo.isEmailExistsInUsers.mockResolvedValue(false);
-      repo.getOneUser.mockResolvedValue({
-        id: 1,
-        email: 'old@example.com',
-        password: 'password',
-        createdAt: current.toDate(),
-        updatedAt: current.toDate(),
-      });
+      repo.getOneUser.mockResolvedValue(
+        plainToInstance(Users, {
+          id: 1,
+          email: 'old@example.com',
+          password: 'password',
+          createdAt: current.toDate(),
+          updatedAt: current.toDate(),
+        }),
+      );
       mockTransaction(repo);
       repo.updateUser.mockResolvedValue(undefined);
 
