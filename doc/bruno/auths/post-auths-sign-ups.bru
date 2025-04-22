@@ -1,0 +1,22 @@
+meta {
+  name: post-auths-sign-ups
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/v1/auths/sign-ups
+  body: json
+  auth: none
+}
+
+headers {
+  Language: th
+}
+
+body:json {
+  {
+    "email": "superadminzxx@example.com",
+    "password": "password"
+  }
+}
