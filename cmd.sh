@@ -76,7 +76,7 @@ function db:reset() {
 
 function db:init() {
   db:reset
-  yarn seed run
+  yarn cli initials:seed
 }
 
 # Only run this after cloning project

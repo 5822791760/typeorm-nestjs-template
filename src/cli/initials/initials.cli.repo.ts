@@ -1,0 +1,6 @@
+import { Injectable } from '@nestjs/common';
+
+import { BaseRepo } from '@core/util/common/common.repo';
+
+@Injectable()
+export class InitialsCliRepo extends BaseRepo {}

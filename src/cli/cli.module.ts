@@ -5,11 +5,12 @@ import { config } from '@core/config';
 import { DBModule } from '@core/db/db.module';
 import { GlobalModule } from '@core/global/global.module';
 
+import { InitialsCliModule } from './initials/initials.cli.module';
 import { PostsCliModule } from './posts/posts.cli.module';
 import { UsersCliModule } from './users/users.cli.module';
 
 @Module({
-  imports: [UsersCliModule, PostsCliModule],
+  imports: [InitialsCliModule, UsersCliModule, PostsCliModule],
 })
 export class CliModule {}
 
