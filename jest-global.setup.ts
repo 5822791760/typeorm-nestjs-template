@@ -1,28 +1,15 @@
-import { PostgreSqlContainer } from '@testcontainers/postgresql';
-import { CamelCasePlugin, Kysely, PostgresDialect } from 'kysely';
-import { Pool } from 'pg';
-import 'tsconfig-paths/register';
+// import { PostgreSqlContainer } from '@testcontainers/postgresql';
+// import 'tsconfig-paths/register';
 
-import { CoreDB, runMigrations, runSeeds } from '@core/db/db.common';
+// import { connectionSource } from '@core/db/db.provider';
 
-export default async () => {
-  const pgContainer = await new PostgreSqlContainer().start();
+// export default async () => {
+//   const pgContainer = await new PostgreSqlContainer().start();
 
-  const kyselyDB = new Kysely({
-    dialect: new PostgresDialect({
-      pool: new Pool({
-        connectionString: pgContainer.getConnectionUri(),
-      }),
-    }),
-    plugins: [new CamelCasePlugin()],
-  }) as CoreDB;
+//   const dataSource = await connectionSource.initialize();
 
-  globalThis.pgContainer = pgContainer;
-  globalThis.kyselyDB = kyselyDB;
+//   globalThis.pgContainer = pgContainer;
+//   globalThis.dataSource = dataSource;
 
-  await runMigrations(kyselyDB);
-
-  await runSeeds(kyselyDB);
-
-  console.log('PostgreSQL container started.');
-};
+//   console.log('PostgreSQL container started.');
+// };
