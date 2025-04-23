@@ -24,14 +24,14 @@ services:
   #   restart: unless-stopped
 
   # Enable this to use redis caching
-  # redis:
-  #   image: redis
-  #   ports:
-  #     - 6379:6379
-  #   depends_on:
-  #     - postgres
-  #   volumes:
-  #     - ./_docker_volumes/redis:/data
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    depends_on:
+      - postgres
+    volumes:
+      - ./_docker_volumes/redis:/data
 
   # Enable this to use file uploading to minio
   # minio:
