@@ -8,6 +8,7 @@ export interface AppConfig {
     port: number;
     memThreshold: number;
     enableSwagger: boolean;
+    enableBullboard: boolean;
     enableJsonLog: boolean;
     enableCache: boolean;
   };
@@ -37,6 +38,7 @@ export const config = (): AppConfig => ({
     nodeEnv: get('NODE_ENV').default('local').asString(),
     port: get('APP_PORT').default(3000).asPortNumber(),
     enableSwagger: get('ENABLE_SWAGGER').default('true').asBool(),
+    enableBullboard: get('ENABLE_BULLBOARD').default('true').asBool(),
     enableJsonLog: get('ENABLE_JSON_LOG').default('true').asBool(),
     enableCache: get('ENABLE_CACHE').default('false').asBool(),
     memThreshold: get('MEM_THRESHOLD')

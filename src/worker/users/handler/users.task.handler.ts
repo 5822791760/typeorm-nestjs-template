@@ -1,30 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { Job } from 'bullmq';
 
-import QUEUE from '@core/shared/worker/worker.queue';
-import { createTaskHandler } from '@core/shared/worker/worker.util';
+import { BaseTask } from '@core/shared/worker/worker.abstract';
+import { Task } from '@core/shared/worker/worker.decorator';
 
 import { ProcessSampleData } from '../users.worker.type';
 
 @Injectable()
-export class UsersTask {
-  async dispatch(job: Job): Promise<void> {
-    const { name, data } = job;
-
-    switch (name) {
-      case 'sample':
-        await this.processSample(data);
-        break;
-      default:
-        return;
-    }
-  }
-
+export class UsersTask extends BaseTask {
+  @Task('sample')
   async processSample(data: ProcessSampleData) {
     console.log('==================================');
     console.log(`Sample Proccessed: ${data.key}`);
     console.log('==================================');
   }
-}
 
-export const UserTaskHandler = createTaskHandler(QUEUE.users, UsersTask);
+  @Task('test')
+  async processTest() {
+    console.log('XXxxxXXXXXXXXX');
+    console.log(`Test Proccessed: a`);
+    console.log('XXxxxXXXXXXXXX');
+  }
+}

@@ -30,6 +30,8 @@
     "repl": "./cmd.sh repl"
   },
   "dependencies": {
+    "@bull-board/api": "^6.9.2",
+    "@bull-board/express": "^6.9.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.0",

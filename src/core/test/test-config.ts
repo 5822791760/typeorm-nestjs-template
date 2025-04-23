@@ -13,6 +13,7 @@ export const config = (): TestAppConfig => ({
     nodeEnv: get('NODE_ENV').default('local').asString(),
     port: get('APP_PORT').default(3000).asPortNumber(),
     enableSwagger: get('ENABLE_SWAGGER').default('false').asBool(),
+    enableBullboard: get('ENABLE_BULLBOARD').default('false').asBool(),
     enableJsonLog: get('ENABLE_JSON_LOG').default('false').asBool(),
     enableCache: get('ENABLE_CACHE').default('false').asBool(),
     memThreshold: get('MEM_THRESHOLD')

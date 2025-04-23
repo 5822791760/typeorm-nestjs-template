@@ -9,7 +9,13 @@ import { ProcessSampleData } from './users.worker.type';
 export class UsersQueue extends BaseQueue {
   queueName = QUEUE.users;
 
+  setupCron(): void {
+    this.addCron('test', '* * * * *');
+
+    return;
+  }
+
   addJobSample(data: ProcessSampleData) {
-    this.q.add('sample', data);
+    this.addJob('sample', data);
   }
 }

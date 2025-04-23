@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
   blue,
@@ -50,6 +50,12 @@ export class LoggerService {
   }
 
   private _prettyLogError(error: Error) {
+    if (error instanceof NotFoundException) {
+      // Bug in bullboard sometimes send not found api
+      // i will ignore
+      return;
+    }
+
     const timestamp = tzDayjs().format('YYYY-MM-DD HH:mm:ss Z');
 
     let message = error.message;
