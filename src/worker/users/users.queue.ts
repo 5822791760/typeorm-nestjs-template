@@ -10,7 +10,7 @@ export class UsersQueue extends BaseQueue {
   queueName = QUEUE.users;
 
   setupCron(): void {
-    this.addCron('test', '* * * * *');
+    this.addCron('cron-test', '* * * * *');
 
     return;
   }

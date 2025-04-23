@@ -44,7 +44,7 @@ export abstract class BaseQueue implements OnModuleInit {
 }
 
 @Injectable()
-export abstract class BaseTask {
+export abstract class BaseWorkerHandler {
   private _taskMap: Record<string, string>;
 
   constructor() {

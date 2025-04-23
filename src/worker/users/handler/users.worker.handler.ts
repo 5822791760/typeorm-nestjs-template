@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 
-import { BaseTask } from '@core/shared/worker/worker.abstract';
+import { BaseWorkerHandler } from '@core/shared/worker/worker.abstract';
 import { Task } from '@core/shared/worker/worker.decorator';
 
 import { ProcessSampleData } from '../users.worker.type';
 
 @Injectable()
-export class UsersTask extends BaseTask {
+export class UsersWorkerHandler extends BaseWorkerHandler {
   @Task('sample')
   async processSample(data: ProcessSampleData) {
     console.log('==================================');
@@ -14,10 +14,10 @@ export class UsersTask extends BaseTask {
     console.log('==================================');
   }
 
-  @Task('test')
+  @Task('cron-test')
   async processTest() {
     console.log('XXxxxXXXXXXXXX');
-    console.log(`Test Proccessed: a`);
+    console.log(`Cron Test Proccessed`);
     console.log('XXxxxXXXXXXXXX');
   }
 }
