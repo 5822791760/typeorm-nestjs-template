@@ -1,6 +1,6 @@
 import { CommandFactory } from 'nest-commander';
 
-import { CliAppModule } from './cli/cli.module';
+import { CliAppModule } from './app.module';
 
 async function bootstrap() {
   const app = await CommandFactory.createWithoutRunning(CliAppModule);

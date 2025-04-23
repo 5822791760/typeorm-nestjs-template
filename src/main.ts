@@ -4,12 +4,12 @@ import { config } from '@core/config';
 import { coreLogger } from '@core/shared/common/common.logger';
 import { setupApp, setupSwagger } from '@core/shared/http/http.setup';
 
-import { AppModule } from './app.module';
+import { MainAppModule } from './app.module';
 
 const appConfig = config().app;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create(MainAppModule, {
     logger: coreLogger(appConfig),
   });
 

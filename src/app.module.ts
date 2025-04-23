@@ -7,7 +7,9 @@ import { GlobalModule } from '@core/global/global.module';
 
 import { DomainModule } from '@domain/domain.module';
 
+import { CliModule } from './cli/cli.module';
 import { MiddlewareModule } from './core/middleware/middleware.module';
+import { WorkerModule } from './worker/worker.module';
 
 @Module({
   imports: [
@@ -23,4 +25,34 @@ import { MiddlewareModule } from './core/middleware/middleware.module';
     DomainModule,
   ],
 })
-export class AppModule {}
+export class MainAppModule {}
+
+@Module({
+  imports: [
+    // Global
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [config],
+    }),
+
+    DBModule,
+    GlobalModule,
+    WorkerModule,
+  ],
+})
+export class WorkerAppModule {}
+
+@Module({
+  imports: [
+    // Global
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [config],
+    }),
+
+    DBModule,
+    GlobalModule,
+    CliModule,
+  ],
+})
+export class CliAppModule {}
