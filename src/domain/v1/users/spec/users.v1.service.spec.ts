@@ -1,4 +1,3 @@
-import { plainToInstance } from 'class-transformer';
 import { Dayjs } from 'dayjs';
 import { mock } from 'jest-mock-extended';
 
@@ -46,13 +45,15 @@ describe(`UsersV1Service`, () => {
   describe(`getUsers`, () => {
     it('works', async () => {
       // Arrange
-      const user: Users = plainToInstance(Users, {
+      const user: Users = {
         id: 1,
         email: 'test@example.com',
         password: 'test',
         createdAt: current.toDate(),
         updatedAt: current.toDate(),
-      });
+        lastSignedInAt: null,
+        posts: [],
+      };
 
       repo.getPageUsers.mockResolvedValue({
         datas: [user],
@@ -86,13 +87,15 @@ describe(`UsersV1Service`, () => {
       // Arrange
       const id = 1;
 
-      const user: Users = plainToInstance(Users, {
+      const user: Users = {
         id: 1,
         email: 'test@example.com',
         password: 'test',
         createdAt: current.toDate(),
         updatedAt: current.toDate(),
-      });
+        lastSignedInAt: null,
+        posts: [],
+      };
 
       repo.getOneUser.mockResolvedValue(user);
 
@@ -184,15 +187,15 @@ describe(`UsersV1Service`, () => {
     it('works', async () => {
       // Arrange
       repo.isEmailExistsInUsers.mockResolvedValue(false);
-      repo.getOneUser.mockResolvedValue(
-        plainToInstance(Users, {
-          id: 1,
-          email: 'old@example.com',
-          password: 'password',
-          createdAt: current.toDate(),
-          updatedAt: current.toDate(),
-        }),
-      );
+      repo.getOneUser.mockResolvedValue({
+        id: 1,
+        email: 'old@example.com',
+        password: 'password',
+        createdAt: current.toDate(),
+        updatedAt: current.toDate(),
+        lastSignedInAt: null,
+        posts: [],
+      });
       mockTransaction(repo);
       repo.updateUser.mockResolvedValue(undefined);
 
@@ -219,6 +222,8 @@ describe(`UsersV1Service`, () => {
         password: expect.any(String),
         createdAt: current.toDate(),
         updatedAt: current.toDate(),
+        lastSignedInAt: null,
+        posts: [],
       });
     });
 
