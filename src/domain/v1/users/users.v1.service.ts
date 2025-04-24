@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { UsersQueue } from 'src/worker/users/users.queue';
 
 import { Users } from '@core/db/entities/Users';
+import { UsersQueueService } from '@core/queue/users/users.queue.service';
 import { hashString } from '@core/shared/common/common.crypto';
 import tzDayjs from '@core/shared/common/common.dayjs';
 import { clone } from '@core/shared/common/common.func';
@@ -31,13 +31,13 @@ import {
 export class UsersV1Service {
   constructor(
     private repo: UsersV1Repo,
-    private usersQueue: UsersQueue,
+    private usersQueueService: UsersQueueService,
   ) {}
 
   async getUsers(options: PaginationOptions): Promise<GetUsers> {
     const { datas, totalItems } = await this.repo.getPageUsers(options);
 
-    this.usersQueue.addJobSample({ key: 'test' });
+    this.usersQueueService.addJobSample({ key: 'test' });
 
     return {
       datas: datas.map((data) => ({

@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { config } from '@core/config';
 import { DBModule } from '@core/db/db.module';
 import { GlobalModule } from '@core/global/global.module';
+import { QueueModule } from '@core/queue/queue.module';
 
 import { DomainModule } from '@domain/domain.module';
 
@@ -23,6 +24,7 @@ import { WorkerModule } from './worker/worker.module';
     GlobalModule,
     MiddlewareModule,
     DomainModule,
+    QueueModule,
   ],
 })
 export class MainAppModule {}
