@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Job, Queue } from 'bullmq';
 
 import { AppConfig } from '@core/config';
-import { BullboardService } from '@core/queue/bullboard/bullboard.service';
+import { QueueBoard } from '@core/queue/queue.board';
 
 import { getTaskHandlers } from './worker.decorator';
 
@@ -14,7 +14,7 @@ export abstract class BaseQueue implements OnModuleInit {
 
   constructor(
     private readonly configService: ConfigService,
-    private readonly bullboardService: BullboardService,
+    private readonly bullboardService: QueueBoard,
   ) {}
 
   onModuleInit() {
@@ -26,12 +26,6 @@ export abstract class BaseQueue implements OnModuleInit {
     });
 
     this.bullboardService.addQueue(this.queue);
-  }
-
-  addCron(name: string, pattern: string, data?: any) {
-    // has job id to prevent duplicates
-    // for horizontal scale
-    this.queue.add(name, data, { repeat: { pattern }, jobId: name });
   }
 
   addJob(name: string, data: any) {
@@ -55,7 +49,7 @@ export abstract class BaseCronQueue extends BaseQueue {
 }
 
 @Injectable()
-export abstract class BaseWorkerHandler {
+export abstract class BaseTaskHandler {
   private _taskMap: Record<string, string>;
 
   constructor() {

@@ -9,7 +9,7 @@ import { Queue } from 'bullmq';
 import { AppConfig } from '@core/config';
 
 @Injectable()
-export class BullboardService implements OnModuleInit {
+export class QueueBoard implements OnModuleInit {
   constructor(
     private readonly adapterHost: HttpAdapterHost,
     private readonly configService: ConfigService,

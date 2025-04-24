@@ -10,7 +10,7 @@ import { DomainModule } from '@domain/domain.module';
 
 import { CliModule } from './cli/cli.module';
 import { MiddlewareModule } from './core/middleware/middleware.module';
-import { WorkerModule } from './worker/worker.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -39,7 +39,7 @@ export class MainAppModule {}
 
     DBModule,
     GlobalModule,
-    WorkerModule,
+    TaskModule,
   ],
 })
 export class WorkerAppModule {}

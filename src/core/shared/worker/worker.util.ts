@@ -31,7 +31,7 @@ export function createWorker(app: INestApplicationContext) {
   }
 }
 
-export function createWorkerHandler(key: string, clazz: any): Provider {
+export function createTaskHandler(key: string, clazz: any): Provider {
   return {
     provide: addNamePrefix(key),
     useClass: clazz,
