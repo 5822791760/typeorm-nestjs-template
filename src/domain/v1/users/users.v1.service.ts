@@ -37,6 +37,7 @@ export class UsersV1Service {
   async getUsers(options: PaginationOptions): Promise<GetUsers> {
     const { datas, totalItems } = await this.repo.getPageUsers(options);
 
+    // Queue job works!
     this.usersQueueService.addJobSample({ key: 'test' });
 
     return {

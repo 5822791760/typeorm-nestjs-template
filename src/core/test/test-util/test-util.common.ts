@@ -5,6 +5,7 @@ import { Dayjs } from 'dayjs';
 import { DataSource } from 'typeorm';
 
 import { TransactionService } from '@core/global/transaction/transaction.service';
+import { QueueModule } from '@core/queue/queue.module';
 import { setupApp } from '@core/shared/http/http.setup';
 
 import { MockGlobalModule } from '../mock/mock.global.module';
@@ -43,6 +44,7 @@ export function createTestingModule(module: DynamicModule | Type<any>) {
       module,
       MockDBModule,
       MockGlobalModule,
+      QueueModule,
       ConfigModule.forRoot({
         isGlobal: true,
         load: [config],

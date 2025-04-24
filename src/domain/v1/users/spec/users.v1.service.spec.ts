@@ -3,6 +3,7 @@ import { Dayjs } from 'dayjs';
 import { mock } from 'jest-mock-extended';
 
 import { Users } from '@core/db/entities/Users';
+import { UsersQueueService } from '@core/queue/users/users.queue.service';
 import tzDayjs from '@core/shared/common/common.dayjs';
 import { errIs } from '@core/shared/common/common.neverthrow';
 import { PaginationOptions } from '@core/shared/common/common.pagintaion';
@@ -19,6 +20,7 @@ import { NewUser, NewUserData, UserDetails } from '../users.v1.type';
 
 describe(`UsersV1Service`, () => {
   const repo = mock<UsersV1Repo>();
+  const queue = mock<UsersQueueService>();
 
   let service: UsersV1Service;
   let current: Dayjs;
@@ -30,6 +32,8 @@ describe(`UsersV1Service`, () => {
     const module = await createTestingModule(UsersV1Module)
       .overrideProvider(UsersV1Repo)
       .useValue(repo)
+      .overrideProvider(UsersQueueService)
+      .useValue(queue)
       .compile();
 
     service = module.get(UsersV1Service);
@@ -54,6 +58,8 @@ describe(`UsersV1Service`, () => {
         datas: [user],
         totalItems: 1,
       });
+
+      queue.addJobSample.mockReturnValue();
 
       // Act
       const options: PaginationOptions = {
