@@ -7,6 +7,6 @@ export class CronsQueueService extends BaseCronQueue {
   queueName = QUEUE.crons;
 
   setupCron(): void {
-    this.addCron(CRONS_JOBS.sample, '* * * * *');
+    this.addCron(CRONS_JOBS.SAMPLE, '* * * * *');
   }
 }

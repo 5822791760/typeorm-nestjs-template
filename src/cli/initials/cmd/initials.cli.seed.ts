@@ -1,7 +1,7 @@
 import { Command, CommandRunner } from 'nest-commander';
 
-import { Posts } from '@core/db/entities/Posts';
-import { Users } from '@core/db/entities/Users';
+import { Posts } from '@core/db/entities/posts';
+import { Users } from '@core/db/entities/users';
 import { DEFAULT_PASSWORD } from '@core/shared/common/common.constant';
 import { hashString } from '@core/shared/common/common.crypto';
 

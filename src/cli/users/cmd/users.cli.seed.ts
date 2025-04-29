@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Command, CommandRunner, Option } from 'nest-commander';
 
-import { Users } from '@core/db/entities/Users';
+import { Users } from '@core/db/entities/users';
 import { DEFAULT_PASSWORD } from '@core/shared/common/common.constant';
 import { hashString } from '@core/shared/common/common.crypto';
 import tzDayjs from '@core/shared/common/common.dayjs';

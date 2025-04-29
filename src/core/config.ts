@@ -11,10 +11,10 @@ export interface AppConfig {
     enableBullboard: boolean;
     enableJsonLog: boolean;
     enableCache: boolean;
+    enableErrorDetails: boolean;
   };
   database: {
     url: string;
-    enableAutoMigrate: boolean;
     enableLog: boolean;
   };
   email: {
@@ -41,13 +41,13 @@ export const config = (): AppConfig => ({
     enableBullboard: get('ENABLE_BULLBOARD').default('true').asBool(),
     enableJsonLog: get('ENABLE_JSON_LOG').default('true').asBool(),
     enableCache: get('ENABLE_CACHE').default('false').asBool(),
+    enableErrorDetails: get('ENABLE_ERROR_DETAILS').default('true').asBool(),
     memThreshold: get('MEM_THRESHOLD')
       .default(150 * 1024 * 1024)
       .asIntPositive(),
   },
   database: {
     url: get('DATABASE_URL').required().asString(),
-    enableAutoMigrate: get('ENABLE_AUTO_MIGRATE').default('true').asBool(),
     enableLog: get('ENABLE_DB_LOG').default('false').asBool(),
   },
   email: {

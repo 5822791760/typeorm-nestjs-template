@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Users } from '@core/db/entities/Users';
+import { Users } from '@core/db/entities/users';
 import { BaseRepo } from '@core/shared/common/common.repo';
 
 import { AuthenticatedUser, NewUser } from './auths.v1.type';

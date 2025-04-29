@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Posts } from './Posts';
+import { Posts } from './posts';
 
 @Index('users_email_key', ['email'], { unique: true })
 @Index('users_pkey', ['id'], { unique: true })

@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
   blue,
@@ -50,19 +50,17 @@ export class LoggerService {
   }
 
   private _prettyLogError(error: Error) {
-    if (error instanceof NotFoundException) {
-      // Bug in bullboard sometimes send not found api
-      // i will ignore
-      return;
-    }
-
-    const timestamp = tzDayjs().format('YYYY-MM-DD HH:mm:ss Z');
-
     let message = error.message;
     if (error instanceof HttpBaseException) {
       const baseException = error as HttpBaseException;
+      if (baseException?.key !== 'internal') {
+        // only pretty print internal error
+        return;
+      }
       message = baseException.key;
     }
+
+    const timestamp = tzDayjs().format('YYYY-MM-DD HH:mm:ss Z');
 
     // Header for the error log
     console.log('');
@@ -83,6 +81,8 @@ export class LoggerService {
         blue(`#${index + 1}`) +
           gray(` Function: `) +
           green(frame.functionName || '(anonymous function)') +
+          gray(`\n    Location: `) +
+          blue(`${frame.fileName}:${frame.lineNumber}:${frame.columnNumber}`) +
           gray(`\n    File: `) +
           magenta(frame.fileName) +
           gray(`\n    Line: `) +

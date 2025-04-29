@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
 import { Command, CommandRunner, Option } from 'nest-commander';
 
-import { Posts } from '@core/db/entities/Posts';
-import { Users } from '@core/db/entities/Users';
+import { Posts } from '@core/db/entities/posts';
+import { Users } from '@core/db/entities/users';
 import tzDayjs from '@core/shared/common/common.dayjs';
 import { getRandomId } from '@core/shared/common/common.func';
 

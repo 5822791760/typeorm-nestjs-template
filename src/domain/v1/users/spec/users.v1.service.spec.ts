@@ -1,7 +1,7 @@
 import { Dayjs } from 'dayjs';
 import { mock } from 'jest-mock-extended';
 
-import { Users } from '@core/db/entities/Users';
+import { Users } from '@core/db/entities/users';
 import { UsersQueueService } from '@core/queue/users/users.queue.service';
 import tzDayjs from '@core/shared/common/common.dayjs';
 import { errIs } from '@core/shared/common/common.neverthrow';

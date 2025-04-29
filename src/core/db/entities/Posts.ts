@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Users } from './Users';
+import { Users } from './users';
 
 @Index('posts_pkey', ['id'], { unique: true })
 @Entity('posts', { schema: 'public' })

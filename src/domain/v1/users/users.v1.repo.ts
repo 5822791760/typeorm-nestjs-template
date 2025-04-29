@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { FindOptionsWhere, Not } from 'typeorm';
 
-import { Users } from '@core/db/entities/Users';
+import { Users } from '@core/db/entities/users';
 import {
   PaginationOptions,
   getLimit,

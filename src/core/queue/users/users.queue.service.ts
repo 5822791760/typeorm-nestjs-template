@@ -7,6 +7,6 @@ export class UsersQueueService extends BaseQueue {
   queueName = QUEUE.users;
 
   addJobSample(data: ProcessSampleData) {
-    this.addJob(USERS_JOBS.sample, data);
+    this.addJob(USERS_JOBS.SAMPLE, data);
   }
 }
